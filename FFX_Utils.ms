@@ -61,3 +61,19 @@ function simOnNetwork jobTitle:undefined simStartF:undefined simEndF:undefined s
 	
 	animationRange = interval projStartF projEndF
 )	
+
+function addLights activeLights:undefined = (
+	if (activeLights == undefined) then (
+		sceneLights = lights as Array
+	) else (
+		sceneLights = #()
+		for activeLight in activeLights do (
+			sceneLights = append sceneLights (getNodeByName activeLight)
+		)
+	)
+	for fumegrid in $ do (
+		for sceneLight in sceneLights do (
+			fumegrid.addLight sceneLight
+		)
+	)
+)
